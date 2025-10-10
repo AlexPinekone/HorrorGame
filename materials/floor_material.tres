@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://b23itfyuhja67"]
+
+[ext_resource type="Texture2D" uid="uid://ine7ptt2andu" path="res://textures/256x256/Floor/Horror_Floor_12-256x256.png" id="1_pj78u"]
+
+[resource]
+albedo_color = Color(0.9079417, 0.9079417, 0.90794164, 1)
+albedo_texture = ExtResource("1_pj78u")
+uv1_scale = Vector3(10, 10, 1)
