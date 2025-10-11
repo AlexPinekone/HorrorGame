@@ -1,7 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://b2dwaqv7lox51"]
+[gd_scene load_steps=8 format=3 uid="uid://b2dwaqv7lox51"]
 
 [ext_resource type="PackedScene" uid="uid://l5hyla5u8vtv" path="res://scenary/roomlevel.tscn" id="2_b3oru"]
+[ext_resource type="PackedScene" uid="uid://db2ph8ec02msv" path="res://scenary/silla.tscn" id="2_pdpul"]
 [ext_resource type="PackedScene" uid="uid://b2y70g21o03fv" path="res://scenes/player.tscn" id="2_pdtm5"]
+[ext_resource type="PackedScene" uid="uid://bqb43xv7u08gy" path="res://scenes/table.tscn" id="3_b3oru"]
+[ext_resource type="PackedScene" uid="uid://w5gq231ttbt3" path="res://scenes/door.tscn" id="4_ua5ty"]
+[ext_resource type="PackedScene" uid="uid://dkerlhl32mgq8" path="res://scenes/box.tscn" id="5_61w3m"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_pdtm5"]
 size = Vector3(15, 1, 15)
@@ -14,7 +18,10 @@ size = Vector3(15, 1, 15)
 shape = SubResource("BoxShape3D_pdtm5")
 
 [node name="player" parent="." instance=ExtResource("2_pdtm5")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 4.11818, 2.136424, 0)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 1.9028587, 2.780384, 0)
+
+[node name="silla" parent="player" instance=ExtResource("2_pdpul")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.7207243e-07, -0.9848702, -3.9365585)
 
 [node name="Node3D" parent="." instance=ExtResource("2_b3oru")]
 
@@ -27,3 +34,12 @@ omni_range = 18.692
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.20424315, 7.584881, -0.013056338)
 light_energy = 0.8
 omni_range = 18.692
+
+[node name="table" parent="." instance=ExtResource("3_b3oru")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.7912784, 0)
+
+[node name="door" parent="." instance=ExtResource("4_ua5ty")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.027250051, 3.0671003, -6.7585173)
+
+[node name="box" parent="door" instance=ExtResource("5_61w3m")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.58564544, 0.062945604, 6.7269096)

@@ -1,13 +1,80 @@
-[gd_scene load_steps=5 format=3 uid="uid://b2y70g21o03fv"]
+[gd_scene load_steps=13 format=3 uid="uid://b2y70g21o03fv"]
 
 [ext_resource type="Script" uid="uid://c2jjs6g7redkk" path="res://scenes/player/scripts/player.gd" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://b2kepj2nh71px" path="res://scenes/player/scripts/fp_cam.gd" id="2_g2els"]
+[ext_resource type="Script" uid="uid://bkexo62co5byf" path="res://scenes/player/scripts/player_interact.gd" id="3_dqkch"]
+[ext_resource type="PackedScene" uid="uid://dj1n7dpholnbn" path="res://scenes/rigged_lowpoly_hand.tscn" id="3_qhqgy"]
+[ext_resource type="Material" uid="uid://cg6mgsd6r57ri" path="res://materials/black.tres" id="4_tuyoq"]
+[ext_resource type="Script" uid="uid://6gcxb5lv6fae" path="res://scenes/player/scripts/hand.gd" id="5_qlg0r"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_u8vuu"]
 height = 3.5
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_3vyb7"]
 height = 3.5
+
+[sub_resource type="QuadMesh" id="QuadMesh_fjrip"]
+
+[sub_resource type="Animation" id="Animation_tuyoq"]
+resource_name = "blink"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("head/MeshInstance3D:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0.077402055, 0.5647136, -0.41180816), Vector3(0.077402055, 0.1802336, -0.41180816), Vector3(0.077402055, 0.1802336, -0.41180816), Vector3(0.077402055, 0.5647136, -0.41180816)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("head/MeshInstance3D2:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1, 2, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0.0775311, -0.5477754, -0.41261378), Vector3(0.0775311, -0.22565973, -0.41261378), Vector3(0.0775311, -0.22565973, -0.41261378), Vector3(0.0775311, -0.5477754, -0.41261378)]
+}
+
+[sub_resource type="Animation" id="Animation_fjrip"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("head/MeshInstance3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.077402055, 0.5647136, -0.41180816)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("head/MeshInstance3D2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.0775311, -0.5477754, -0.41261378)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_smehm"]
+_data = {
+&"RESET": SubResource("Animation_fjrip"),
+&"blink": SubResource("Animation_tuyoq")
+}
 
 [node name="player" type="CharacterBody3D"]
 script = ExtResource("1_3vyb7")
@@ -22,4 +89,33 @@ mesh = SubResource("CapsuleMesh_3vyb7")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.623278, 0)
 script = ExtResource("2_g2els")
 
-[node name="Camera3D" type="Camera3D" parent="head"]
+[node name="camera" type="Camera3D" parent="head"]
+
+[node name="RayCast3D" type="RayCast3D" parent="head"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+target_position = Vector3(0, -2, 0)
+script = ExtResource("3_dqkch")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="head"]
+transform = Transform3D(1.6025591, 0, 0, 0, 0.43023372, 0, 0, 0, 0.8371617, 0.077402055, 0.5647136, -0.41180816)
+material_override = ExtResource("4_tuyoq")
+mesh = SubResource("QuadMesh_fjrip")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="head"]
+transform = Transform3D(1.6025591, 0, 0, 0, 0.43023372, 0, 0, 0, 0.8371617, 0.0775311, -0.5477754, -0.41261378)
+material_override = ExtResource("4_tuyoq")
+mesh = SubResource("QuadMesh_fjrip")
+
+[node name="RiggedLowpolyHand2" parent="." instance=ExtResource("3_qhqgy")]
+transform = Transform3D(-0.0966968, -0.02071235, -0.014856895, -0.020944793, 0.09778198, -1.831052e-09, 0.0145273665, 0.003111744, -0.09889021, 0.80416477, 0.56169206, -0.8627769)
+script = ExtResource("5_qlg0r")
+
+[node name="Skeleton3D" parent="RiggedLowpolyHand2/Armature" index="0"]
+transform = Transform3D(1, 1.4901161e-08, 0, -1.4901161e-08, 1, 0, 7.1054274e-15, 0, 1, 0.40243053, -1.8787724, 0)
+
+[node name="AnimationBlink" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_smehm")
+}
+
+[editable path="RiggedLowpolyHand2"]
