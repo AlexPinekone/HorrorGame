@@ -18,10 +18,7 @@ size = Vector3(15, 1, 15)
 shape = SubResource("BoxShape3D_pdtm5")
 
 [node name="player" parent="." instance=ExtResource("2_pdtm5")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 1.9028587, 2.780384, 0)
-
-[node name="silla" parent="player" instance=ExtResource("2_pdpul")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.7207243e-07, -0.9848702, -3.9365585)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 1.8562076, 2.780384, 0)
 
 [node name="Node3D" parent="." instance=ExtResource("2_b3oru")]
 
@@ -37,6 +34,12 @@ omni_range = 18.692
 
 [node name="table" parent="." instance=ExtResource("3_b3oru")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.7912784, 0)
+
+[node name="silla" parent="." instance=ExtResource("2_pdpul")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -2.0336998, 1.7955139, 0)
+
+[node name="silla2" parent="." instance=ExtResource("2_pdpul")]
+transform = Transform3D(1.192488e-08, 0, -0.99999994, 0, 1, 0, 0.99999994, 0, 1.192488e-08, 1.0120504, 1.7955139, 4.231743)
 
 [node name="door" parent="." instance=ExtResource("4_ua5ty")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.027250051, 3.0671003, -6.7585173)
