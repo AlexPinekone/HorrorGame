@@ -5,7 +5,7 @@ var sensitivity = 0.2
 var box_min_x = 0
 var box_max_x = 0.18
 var box_min_z = -1.1627
-var box_max_z = -0.83
+var box_max_z = -0.63
 var box_max_z_i = -0.3037
 var mid_x
 var mid_z
@@ -15,7 +15,9 @@ var right
 
 enum State {normal, box, ball, door}
 
-var state := State.ball
+var state := State.normal
+
+var ban_fin_texto = false
 
 func _ready() -> void:
 	var mx = (box_max_x - box_min_x)/2

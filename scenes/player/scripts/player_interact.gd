@@ -5,7 +5,16 @@ extends RayCast3D
 func _physics_process(_delta: float) -> void:
 	if is_colliding():
 		var hit = get_collider()
-		if hit.name == "door":
+		if hit.name == "door" && Input.is_action_just_pressed("interact"):
+			Singleton.state = Singleton.State.door
 			if Input.is_action_just_pressed("interact"):
 				hit.get_parent().get_parent().get_parent().toogle_door()
 				animation_blink.play("blink")
+				
+		if hit.name == "silla" && Input.is_action_just_pressed("interact"):
+			Singleton.state = Singleton.State.box
+			
+		if hit.name == "ball" && Input.is_action_just_pressed("interact"):
+			rotation = Vector3(180, rotation.y, rotation.z)
+			Singleton.state = Singleton.State.ball
+			

@@ -27,9 +27,9 @@ material_override = ExtResource("1_3inec")
 mesh = SubResource("BoxMesh_on5l8")
 skeleton = NodePath("../MeshInstance3D")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D2"]
+[node name="ball" type="StaticBody3D" parent="MeshInstance3D2"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D2/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D2/ball"]
 shape = SubResource("ConcavePolygonShape3D_on5l8")
 
 [node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
@@ -38,9 +38,9 @@ material_override = ExtResource("1_3inec")
 mesh = SubResource("BoxMesh_on5l8")
 skeleton = NodePath("../MeshInstance3D")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D3"]
+[node name="ball" type="StaticBody3D" parent="MeshInstance3D3"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D3/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D3/ball"]
 shape = SubResource("ConcavePolygonShape3D_3inec")
 
 [node name="MeshInstance3D4" type="MeshInstance3D" parent="."]
@@ -49,9 +49,9 @@ material_override = ExtResource("1_3inec")
 mesh = SubResource("BoxMesh_on5l8")
 skeleton = NodePath("../MeshInstance3D")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D4"]
+[node name="ball" type="StaticBody3D" parent="MeshInstance3D4"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D4/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D4/ball"]
 shape = SubResource("ConcavePolygonShape3D_ks2v0")
 
 [node name="MeshInstance3D5" type="MeshInstance3D" parent="."]
@@ -60,9 +60,9 @@ material_override = ExtResource("1_3inec")
 mesh = SubResource("BoxMesh_on5l8")
 skeleton = NodePath("../MeshInstance3D")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D5"]
+[node name="ball" type="StaticBody3D" parent="MeshInstance3D5"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D5/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D5/ball"]
 shape = SubResource("ConcavePolygonShape3D_c2ln5")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
@@ -70,7 +70,7 @@ transform = Transform3D(1, 0, 0, 0, 0.06, 0, 0, 0, 1, 0, 0.2, 0)
 material_override = ExtResource("1_3inec")
 mesh = SubResource("BoxMesh_on5l8")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+[node name="ball" type="StaticBody3D" parent="MeshInstance3D"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/ball"]
 shape = SubResource("ConcavePolygonShape3D_telwu")

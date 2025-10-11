@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://b2dwaqv7lox51"]
+[gd_scene load_steps=12 format=3 uid="uid://b2dwaqv7lox51"]
 
 [ext_resource type="PackedScene" uid="uid://l5hyla5u8vtv" path="res://scenary/roomlevel.tscn" id="2_b3oru"]
 [ext_resource type="PackedScene" uid="uid://db2ph8ec02msv" path="res://scenary/silla.tscn" id="2_pdpul"]
@@ -6,43 +6,86 @@
 [ext_resource type="PackedScene" uid="uid://bqb43xv7u08gy" path="res://scenes/table.tscn" id="3_b3oru"]
 [ext_resource type="PackedScene" uid="uid://w5gq231ttbt3" path="res://scenes/door.tscn" id="4_ua5ty"]
 [ext_resource type="PackedScene" uid="uid://dkerlhl32mgq8" path="res://scenes/box.tscn" id="5_61w3m"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_pdtm5"]
-size = Vector3(15, 1, 15)
+[ext_resource type="PackedScene" uid="uid://cw0mpstqhfj5d" path="res://scenary/silla_i.tscn" id="7_8hd6v"]
+[ext_resource type="PackedScene" uid="uid://bpqfhe3jhfhve" path="res://scenes/text_box.tscn" id="8_045es"]
+[ext_resource type="Script" uid="uid://dkoxwgtt2jeid" path="res://scenes/player/scripts/game_manager.gd" id="9_omn1t"]
+[ext_resource type="Script" uid="uid://dm2kl8lralyg" path="res://state_machine/state_machine.gd" id="10_lf3p4"]
+[ext_resource type="Script" uid="uid://dygqf7nsgp6yt" path="res://state_machine/States/begin.gd" id="11_yydhl"]
 
 [node name="level" type="Node3D"]
 
-[node name="floor" type="StaticBody3D" parent="."]
+[node name="TextBox" parent="." instance=ExtResource("8_045es")]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="floor"]
-shape = SubResource("BoxShape3D_pdtm5")
+[node name="Physic" type="Node3D" parent="."]
 
-[node name="player" parent="." instance=ExtResource("2_pdtm5")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 1.8562076, 2.780384, 0)
+[node name="Lights" type="Node3D" parent="Physic"]
 
-[node name="Node3D" parent="." instance=ExtResource("2_b3oru")]
-
-[node name="OmniLight3D2" type="OmniLight3D" parent="."]
+[node name="OmniLight3D2" type="OmniLight3D" parent="Physic/Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.021255314, 7.088866, -16.86784)
 light_energy = 0.8
 omni_range = 18.692
 
-[node name="OmniLight3D" type="OmniLight3D" parent="."]
+[node name="OmniLight3D" type="OmniLight3D" parent="Physic/Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.20424315, 7.584881, -0.013056338)
 light_energy = 0.8
 omni_range = 18.692
 
-[node name="table" parent="." instance=ExtResource("3_b3oru")]
+[node name="player" parent="Physic" instance=ExtResource("2_pdtm5")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 4.96181, 2.780384, 0)
+
+[node name="room" parent="Physic" instance=ExtResource("2_b3oru")]
+
+[node name="Objects" type="Node3D" parent="Physic"]
+
+[node name="table" parent="Physic/Objects" instance=ExtResource("3_b3oru")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.7912784, 0)
 
-[node name="silla" parent="." instance=ExtResource("2_pdpul")]
+[node name="sillai" parent="Physic/Objects" groups=["silla"] instance=ExtResource("7_8hd6v")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 1.012, 1.796, 0)
+
+[node name="silla" parent="Physic/Objects" instance=ExtResource("2_pdpul")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -2.0336998, 1.7955139, 0)
 
-[node name="silla2" parent="." instance=ExtResource("2_pdpul")]
-transform = Transform3D(1.192488e-08, 0, -0.99999994, 0, 1, 0, 0.99999994, 0, 1.192488e-08, 1.0120504, 1.7955139, 4.231743)
+[node name="box" parent="Physic/Objects" instance=ExtResource("5_61w3m")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.5583954, 3.130046, -0.031607628)
 
-[node name="door" parent="." instance=ExtResource("4_ua5ty")]
+[node name="door" parent="Physic/Objects" instance=ExtResource("4_ua5ty")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.027250051, 3.0671003, -6.7585173)
 
-[node name="box" parent="door" instance=ExtResource("5_61w3m")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.58564544, 0.062945604, 6.7269096)
+[node name="GameManager" type="Node3D" parent="."]
+script = ExtResource("9_omn1t")
+
+[node name="State Machine" type="Node" parent="GameManager" node_paths=PackedStringArray("initial_state")]
+script = ExtResource("10_lf3p4")
+initial_state = NodePath("BEGIN")
+
+[node name="BEGIN" type="Node" parent="GameManager/State Machine"]
+script = ExtResource("11_yydhl")
+
+[node name="TUTORIAL" type="Node" parent="GameManager/State Machine"]
+
+[node name="SHOWBOX" type="Node" parent="GameManager/State Machine"]
+
+[node name="PLAYTUTORIAL" type="Node" parent="GameManager/State Machine"]
+
+[node name="SHOWRESULT" type="Node" parent="GameManager/State Machine"]
+
+[node name="HIDEBOX" type="Node" parent="GameManager/State Machine"]
+
+[node name="TRYAGAIN" type="Node" parent="GameManager/State Machine"]
+
+[node name="CUT_FIRSTFINGER" type="Node" parent="GameManager/State Machine"]
+
+[node name="CUT_SECONDFINGER" type="Node" parent="GameManager/State Machine"]
+
+[node name="CUT_THIRDFINGER" type="Node" parent="GameManager/State Machine"]
+
+[node name="CUT_FOURTHFINGER" type="Node" parent="GameManager/State Machine"]
+
+[node name="CUT_FIFTHFINGER" type="Node" parent="GameManager/State Machine"]
+
+[node name="OPENDOOR" type="Node" parent="GameManager/State Machine"]
+
+[node name="GAMEOVER" type="Node" parent="GameManager/State Machine"]
+
+[node name="FINALE" type="Node" parent="GameManager/State Machine"]

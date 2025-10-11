@@ -23,6 +23,10 @@ Singleton="*res://scenes/player/scripts/singleton.gd"
 
 project/assembly_name="HorrorGame"
 
+[global_group]
+
+silla=""
+
 [input]
 
 forward={

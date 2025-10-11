@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://b2y70g21o03fv"]
+[gd_scene load_steps=13 format=3 uid="uid://b2y70g21o03fv"]
 
 [ext_resource type="Script" uid="uid://c2jjs6g7redkk" path="res://scenes/player/scripts/player.gd" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://b2kepj2nh71px" path="res://scenes/player/scripts/fp_cam.gd" id="2_g2els"]
@@ -6,9 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://dj1n7dpholnbn" path="res://scenes/rigged_lowpoly_hand.tscn" id="3_qhqgy"]
 [ext_resource type="Material" uid="uid://cg6mgsd6r57ri" path="res://materials/black.tres" id="4_tuyoq"]
 [ext_resource type="Script" uid="uid://6gcxb5lv6fae" path="res://scenes/player/scripts/hand.gd" id="5_qlg0r"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_tuyoq"]
-size = Vector3(0.19137573, 1.1170654, 0.0057678223)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_u8vuu"]
 height = 3.5
@@ -82,10 +79,6 @@ _data = {
 [node name="player" type="CharacterBody3D"]
 script = ExtResource("1_3vyb7")
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
-transform = Transform3D(0.99046874, -0.13773844, -6.0207386e-09, 2.2389725e-16, -4.3711392e-08, 1, -0.13773844, -0.99046874, -4.3294765e-08, 0.85598195, 0.35376754, -0.5934369)
-shape = SubResource("BoxShape3D_tuyoq")
-
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_u8vuu")
 
@@ -115,7 +108,7 @@ material_override = ExtResource("4_tuyoq")
 mesh = SubResource("QuadMesh_fjrip")
 
 [node name="RiggedLowpolyHand2" parent="." instance=ExtResource("3_qhqgy")]
-transform = Transform3D(-0.0966968, -0.02071235, -0.014856895, -0.020944793, 0.09778198, -1.831052e-09, 0.0145273665, 0.003111744, -0.09889021, 0.80416477, 0.56169206, -0.8627769)
+transform = Transform3D(-0.09759636, -0.020905033, 0.006158852, -0.020944795, 0.09778198, -2.2257127e-09, -0.0060222484, -0.0012899614, -0.099810176, 0.80416477, 0.56169206, -0.8627769)
 script = ExtResource("5_qlg0r")
 
 [node name="Skeleton3D" parent="RiggedLowpolyHand2/Armature" index="0"]
