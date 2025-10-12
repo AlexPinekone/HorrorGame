@@ -13,7 +13,7 @@ var right_ul
 var right_dr
 var right
 
-enum State {normal, box, ball, door}
+enum State {normal, box, ball, door, showhand}
 
 var state := State.normal
 

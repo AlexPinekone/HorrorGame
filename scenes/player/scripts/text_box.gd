@@ -31,15 +31,19 @@ func _process(_delta: float) -> void:
 		textState.READING:
 			if Input.is_action_just_pressed("ui_accept") || Input.is_action_just_pressed("interact"):
 				label.visible_ratio = 1.0
-				end_symbol.text = "v"
+				#v
+				end_symbol.text = ""
 				tween.stop()
 				change_state(textState.FINISHED)
 		textState.FINISHED:
 			if Input.is_action_just_pressed("ui_accept") || Input.is_action_just_pressed("interact"):
 				change_state(textState.READY)
-				hide_textbox()
-				Singleton.ban_fin_texto = true
+				if(text_queue.is_empty()):
+					Singleton.ban_fin_texto = true
+					hide_textbox()
+				
 func queue_text(next_text):
+	Singleton.ban_fin_texto = false
 	text_queue.push_back(next_text)
 
 func hide_textbox():
@@ -62,15 +66,19 @@ func display_text():
 	tween.connect("finished", on_tween_finished)
 	
 func on_tween_finished():
-	end_symbol.text = "v"
+	#v
+	end_symbol.text = ""
 	change_state(textState.FINISHED)
 	
 func change_state(next_state):
 	current_state = next_state
 	match current_state:
 		textState.READY:
-			print("Changing state to: READY")
+			#print("Changing state to: READY")
+			pass
 		textState.READING:
-			print("Changing state to: READING")
+			#print("Changing state to: READING")
+			pass
 		textState.FINISHED:
-			print("Changing state to: FINISHED")
+			#print("Changing state to: FINISHED")
+			pass

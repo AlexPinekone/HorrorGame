@@ -15,6 +15,6 @@ func _physics_process(_delta: float) -> void:
 			Singleton.state = Singleton.State.box
 			
 		if hit.name == "ball" && Input.is_action_just_pressed("interact"):
-			rotation = Vector3(180, rotation.y, rotation.z)
 			Singleton.state = Singleton.State.ball
+			
 			

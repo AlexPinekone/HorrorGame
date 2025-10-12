@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://b2y70g21o03fv"]
+[gd_scene load_steps=15 format=3 uid="uid://b2y70g21o03fv"]
 
 [ext_resource type="Script" uid="uid://c2jjs6g7redkk" path="res://scenes/player/scripts/player.gd" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://b2kepj2nh71px" path="res://scenes/player/scripts/fp_cam.gd" id="2_g2els"]
@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://dj1n7dpholnbn" path="res://scenes/rigged_lowpoly_hand.tscn" id="3_qhqgy"]
 [ext_resource type="Material" uid="uid://cg6mgsd6r57ri" path="res://materials/black.tres" id="4_tuyoq"]
 [ext_resource type="Script" uid="uid://6gcxb5lv6fae" path="res://scenes/player/scripts/hand.gd" id="5_qlg0r"]
+[ext_resource type="PackedScene" uid="uid://bhs5t8f66ssfu" path="res://scenes/blackballhand.tscn" id="7_fjrip"]
+[ext_resource type="PackedScene" uid="uid://bc8auxbxro085" path="res://scenes/whiteballhand.tscn" id="8_smehm"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_u8vuu"]
 height = 3.5
@@ -44,7 +46,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_tuyoq"]
 resource_name = "blink"
-length = 1.7
+length = 1.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -52,7 +54,7 @@ tracks/0/path = NodePath("head/MeshInstance3D:position")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.6, 1.1, 1.7),
+"times": PackedFloat32Array(0, 0.4, 0.8, 1.2),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [Vector3(0.077402055, 0.5647136, -0.41180816), Vector3(0.077402055, 0.1802336, -0.41180816), Vector3(0.077402055, 0.1802336, -0.41180816), Vector3(0.077402055, 0.5647136, -0.41180816)]
@@ -64,7 +66,7 @@ tracks/1/path = NodePath("head/MeshInstance3D2:position")
 tracks/1/interp = 2
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.6, 1.1, 1.7),
+"times": PackedFloat32Array(0, 0.4, 0.8, 1.2),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [Vector3(0.0775311, -0.5477754, -0.41261378), Vector3(0.0775311, -0.22565973, -0.41261378), Vector3(0.0775311, -0.22565973, -0.41261378), Vector3(0.0775311, -0.5477754, -0.41261378)]
@@ -116,6 +118,14 @@ transform = Transform3D(1, 1.4901161e-08, 0, -1.4901161e-08, 1, 0, 7.1054274e-15
 
 [node name="mesh" parent="RiggedLowpolyHand2/Armature/Skeleton3D" index="0"]
 transform = Transform3D(1, 2.4680048e-08, 0, 1.0244548e-08, 1, -1.8626451e-09, 1.4901161e-08, 0, 1.0000001, 0.04566288, -0.21318316, 0)
+
+[node name="RiggedLowpolyHand" parent="." instance=ExtResource("7_fjrip")]
+transform = Transform3D(-0.09323553, -0.036154315, -8.150911e-09, -0.036154315, 0.09323553, -3.1607112e-09, 8.742278e-09, 3.1676512e-16, -0.099999994, 0.821371, 0.41203684, -0.83428335)
+visible = false
+
+[node name="RiggedLowpolyHand3" parent="." instance=ExtResource("8_smehm")]
+transform = Transform3D(-0.09240729, -0.038221568, -8.078502e-09, -0.038221568, 0.09240729, -3.3414354e-09, 8.742275e-09, -2.1368796e-16, -0.09999999, 0.82786685, 0.40769303, -0.82952625)
+visible = false
 
 [node name="AnimationBlink" type="AnimationPlayer" parent="."]
 libraries = {
