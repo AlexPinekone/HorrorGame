@@ -14,8 +14,14 @@ var right_dr
 var right
 
 enum State {normal, box, ball, door, showhand}
+enum Fingers {pulgar, anular, indice, medio, menique}
+
+var evilBall = true
 
 var state := State.normal
+var fingers := {Fingers.pulgar: 1, Fingers.anular: 2, Fingers.indice: 3, Fingers.medio: 4, Fingers.menique: 5}
+var gameoverflag = false
+var primera = true
 
 var ban_fin_texto = false
 

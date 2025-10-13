@@ -17,6 +17,7 @@ enum textState {
 
 var current_state = textState.READY
 var text_queue = []
+var finished := false
 
 func _ready() -> void:
 	print("Starting state: READY")
@@ -39,13 +40,22 @@ func _process(_delta: float) -> void:
 			if Input.is_action_just_pressed("ui_accept") || Input.is_action_just_pressed("interact"):
 				change_state(textState.READY)
 				if(text_queue.is_empty()):
+					finished = true
 					Singleton.ban_fin_texto = true
 					hide_textbox()
 				
 func queue_text(next_text):
 	Singleton.ban_fin_texto = false
 	text_queue.push_back(next_text)
+	finished = false
 
+func is_queue_empty() -> bool:
+	print("Hallou: ", text_queue.is_empty())
+	return text_queue.is_empty()
+
+func get_finished() -> bool:
+	return finished
+	
 func hide_textbox():
 	start_symbol.text = ""
 	end_symbol.text = ""

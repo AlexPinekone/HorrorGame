@@ -1,13 +1,12 @@
-[gd_scene load_steps=15 format=3 uid="uid://b2y70g21o03fv"]
+[gd_scene load_steps=14 format=3 uid="uid://b2y70g21o03fv"]
 
 [ext_resource type="Script" uid="uid://c2jjs6g7redkk" path="res://scenes/player/scripts/player.gd" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://b2kepj2nh71px" path="res://scenes/player/scripts/fp_cam.gd" id="2_g2els"]
 [ext_resource type="Script" uid="uid://bkexo62co5byf" path="res://scenes/player/scripts/player_interact.gd" id="3_dqkch"]
-[ext_resource type="PackedScene" uid="uid://dj1n7dpholnbn" path="res://scenes/rigged_lowpoly_hand.tscn" id="3_qhqgy"]
 [ext_resource type="Material" uid="uid://cg6mgsd6r57ri" path="res://materials/black.tres" id="4_tuyoq"]
+[ext_resource type="PackedScene" uid="uid://ce558j5bd7lc8" path="res://scenes/Interaction.tscn" id="5_fjrip"]
 [ext_resource type="Script" uid="uid://6gcxb5lv6fae" path="res://scenes/player/scripts/hand.gd" id="5_qlg0r"]
-[ext_resource type="PackedScene" uid="uid://bhs5t8f66ssfu" path="res://scenes/blackballhand.tscn" id="7_fjrip"]
-[ext_resource type="PackedScene" uid="uid://bc8auxbxro085" path="res://scenes/whiteballhand.tscn" id="8_smehm"]
+[ext_resource type="PackedScene" uid="uid://unmnn6es8tap" path="res://scenes/thehand.tscn" id="5_tuyoq"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_u8vuu"]
 height = 3.5
@@ -109,27 +108,15 @@ transform = Transform3D(1.6025591, 0, 0, 0, 0.43023372, 0, 0, 0, 0.8371617, 0.07
 material_override = ExtResource("4_tuyoq")
 mesh = SubResource("QuadMesh_fjrip")
 
-[node name="RiggedLowpolyHand2" parent="." instance=ExtResource("3_qhqgy")]
-transform = Transform3D(-0.09759636, -0.020905033, 0.006158852, -0.020944795, 0.09778198, -2.2257127e-09, -0.0060222484, -0.0012899614, -0.099810176, 0.80416477, 0.56169206, -0.8627769)
+[node name="CanvasLayer" parent="head" instance=ExtResource("5_fjrip")]
+
+[node name="thehand" parent="." instance=ExtResource("5_tuyoq")]
+transform = Transform3D(-0.09978013, -2.313389e-05, -0.006627345, 0, 0.09999936, -0.00034906509, 0.0066273855, -0.00034829762, -0.09977952, 0.81842923, 0.34535563, -0.8490897)
 script = ExtResource("5_qlg0r")
-
-[node name="Skeleton3D" parent="RiggedLowpolyHand2/Armature" index="0"]
-transform = Transform3D(1, 1.4901161e-08, 0, -1.4901161e-08, 1, 0, 7.1054274e-15, 0, 1, 0.40243053, -1.8787724, 0)
-
-[node name="mesh" parent="RiggedLowpolyHand2/Armature/Skeleton3D" index="0"]
-transform = Transform3D(1, 2.4680048e-08, 0, 1.0244548e-08, 1, -1.8626451e-09, 1.4901161e-08, 0, 1.0000001, 0.04566288, -0.21318316, 0)
-
-[node name="RiggedLowpolyHand" parent="." instance=ExtResource("7_fjrip")]
-transform = Transform3D(-0.09323553, -0.036154315, -8.150911e-09, -0.036154315, 0.09323553, -3.1607112e-09, 8.742278e-09, 3.1676512e-16, -0.099999994, 0.821371, 0.41203684, -0.83428335)
-visible = false
-
-[node name="RiggedLowpolyHand3" parent="." instance=ExtResource("8_smehm")]
-transform = Transform3D(-0.09240729, -0.038221568, -8.078502e-09, -0.038221568, 0.09240729, -3.3414354e-09, 8.742275e-09, -2.1368796e-16, -0.09999999, 0.82786685, 0.40769303, -0.82952625)
-visible = false
 
 [node name="AnimationBlink" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_smehm")
 }
 
-[editable path="RiggedLowpolyHand2"]
+[editable path="thehand"]

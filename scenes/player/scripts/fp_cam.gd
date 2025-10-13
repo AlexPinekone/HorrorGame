@@ -1,5 +1,7 @@
 extends Node3D
 
+@onready var canvas_layer: CanvasLayer = $CanvasLayer
+
 var shake_amount = 0.05
 var shake_time = 0.5
 var original_position
@@ -31,6 +33,7 @@ func _input(event: InputEvent) -> void:
 			
 	if Singleton.state == Singleton.State.ball:
 		if event is InputEventMouseMotion:
+			label_take()
 			get_parent().rotate_y(deg_to_rad(-event.relative.x * Singleton.sensitivity))
 			get_parent().rotation.y = clamp(get_parent().rotation.y, deg_to_rad(90), deg_to_rad(90))
 			rotate_x(deg_to_rad(-event.relative.y * Singleton.sensitivity))
@@ -50,3 +53,18 @@ func start_shake(duration=0.5):
 	# Al final, volvemos a la posición original
 	tween.tween_property(self, "position", original_position, 0.05)
 			
+
+func label_sit():
+	canvas_layer.label_sit()
+	
+func label_blank():
+	canvas_layer.label_blank()
+	
+func label_take():
+	canvas_layer.label_take()
+	
+func label_hand():
+	canvas_layer.label_hand()
+	
+func label_open():
+	canvas_layer.label_open()

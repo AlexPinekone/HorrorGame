@@ -3,13 +3,29 @@ class_name Player
 
 @onready var ray_cast_3d: RayCast3D = $head/RayCast3D
 @onready var animation_blink: AnimationPlayer = $AnimationBlink
+@onready var game_manager: Node3D = $"../../GameManager"
+
+#Just the ball
+@onready var ball: MeshInstance3D = $thehand/ball
+#The hole hand model
+@onready var thehand: Node3D = $thehand
+#Fingers
+@onready var menique: MeshInstance3D = $thehand/menique
+@onready var anular: MeshInstance3D = $thehand/anular
+@onready var medio: MeshInstance3D = $thehand/medio
+@onready var indice: MeshInstance3D = $thehand/indice
+@onready var pulgar: MeshInstance3D = $thehand/pulgar
+#Knuckles
+@onready var n_menique: MeshInstance3D = $thehand/n_menique
+@onready var n_indice: MeshInstance3D = $thehand/n_indice
+@onready var n_medio: MeshInstance3D = $thehand/n_medio
+@onready var n_anular: MeshInstance3D = $thehand/n_anular
+@onready var n_pulgar: MeshInstance3D = $thehand/n_pulgar
 
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 
-
-func _physics_process(delta: float) -> void:
-	
+func _physics_process(_delta: float) -> void:
 	if Singleton.state == Singleton.State.normal:
 		var input_dir := Input.get_vector("left", "right", "forward", "backward")
 		var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
@@ -22,11 +38,20 @@ func _physics_process(delta: float) -> void:
 
 		move_and_slide()
 	
-	if Singleton.state == Singleton.State.box || Singleton.state == Singleton.State.showhand:
-		position = Vector3(1.6, 2.78, 0.0)
-		for nodo_silla in get_tree().get_nodes_in_group("silla"):
-			nodo_silla.position = Vector3(1.8,nodo_silla.position.y,nodo_silla.position.z)
+	if (Singleton.state == Singleton.State.box || Singleton.state == Singleton.State.showhand) && !Singleton.gameoverflag:
+		game_manager.move_chair_out()
+	
+	if Singleton.gameoverflag:
+		Singleton.state = Singleton.State.normal
+		
+	if (Singleton.state == Singleton.State.ball) && Singleton.primera:
+		Singleton.primera = false
+		await get_tree().create_timer(0.5).timeout
+		center_hand()
 
+func center_hand():
+	thehand.position.x = Singleton.mid_x
+	thehand.position.z = Singleton.box_max_z
 
 func normal_ray_cast():
 	ray_cast_3d.rotation = Vector3(deg_to_rad(90), ray_cast_3d.rotation.y, ray_cast_3d.rotation.z)
@@ -36,3 +61,44 @@ func up_ray_cast():
 
 func start_blink():
 	animation_blink.play("blink")
+	
+func show_ball_black():
+	ball.material_override = preload("uid://cg6mgsd6r57ri")
+	thehand.rotation = Vector3(thehand.rotation.x, thehand.rotation.y , deg_to_rad(170))
+
+func show_ball_white():
+	ball.material_override = preload("uid://dpagjyfvobv2t")
+	thehand.rotation = Vector3(thehand.rotation.x, thehand.rotation.y , deg_to_rad(170))
+	
+func hide_ball():
+	thehand.rotation = Vector3(thehand.rotation.x, thehand.rotation.y , deg_to_rad(0))
+	
+func hide_f_indice():
+	indice.visible = false
+	
+func hide_f_menique():
+	menique.visible = false
+	
+func hide_f_anular():
+	anular.visible = false
+	
+func hide_f_medio():
+	medio.visible = false
+	
+func hide_f_pulgar():
+	pulgar.visible = false
+
+func red_indice():
+	n_indice.material_override = preload("uid://vsxac7kt7h00")
+	
+func red_menique():
+	n_menique.material_override = preload("uid://vsxac7kt7h00")
+	
+func red_medio():
+	n_medio.material_override = preload("uid://vsxac7kt7h00")
+	
+func red_anular():
+	n_anular.material_override = preload("uid://vsxac7kt7h00")
+	
+func red_pulgar():
+	n_pulgar.material_override = preload("uid://vsxac7kt7h00")

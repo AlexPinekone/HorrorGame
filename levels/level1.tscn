@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://b2dwaqv7lox51"]
+[gd_scene load_steps=26 format=3 uid="uid://b2dwaqv7lox51"]
 
 [ext_resource type="PackedScene" uid="uid://l5hyla5u8vtv" path="res://scenary/roomlevel.tscn" id="2_b3oru"]
 [ext_resource type="PackedScene" uid="uid://db2ph8ec02msv" path="res://scenary/silla.tscn" id="2_pdpul"]
@@ -15,6 +15,33 @@
 [ext_resource type="Script" uid="uid://crkv4asg7h3v8" path="res://state_machine/States/showbox.gd" id="13_8bcou"]
 [ext_resource type="Script" uid="uid://dyrh6she3qo4k" path="res://state_machine/States/playtutorial.gd" id="14_f7u7y"]
 [ext_resource type="Script" uid="uid://b1pl3ri3bl236" path="res://state_machine/States/showresult.gd" id="15_jq2cn"]
+[ext_resource type="Shader" uid="uid://dpug87jwkojgv" path="res://shaders/blood.tres" id="16_a5s8o"]
+[ext_resource type="Script" uid="uid://dfd4gwc0aaude" path="res://state_machine/States/intro_play.gd" id="16_ls4ot"]
+[ext_resource type="Script" uid="uid://bwdjyv6bud60w" path="res://state_machine/States/middle_play.gd" id="17_tx362"]
+[ext_resource type="Script" uid="uid://cl1cgh7xj0dbh" path="res://state_machine/States/final_play.gd" id="18_l7nqg"]
+[ext_resource type="Script" uid="uid://78bcwapwc3j7" path="res://state_machine/States/gameover.gd" id="19_w7ck5"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ls4ot"]
+render_priority = 0
+shader = ExtResource("16_a5s8o")
+
+[sub_resource type="Curve" id="Curve_jq2cn"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.3820225), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_a5s8o"]
+curve = SubResource("Curve_jq2cn")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ls4ot"]
+spread = 2.53
+initial_velocity_min = 4.0
+initial_velocity_max = 6.0
+linear_accel_min = 3.9999976
+linear_accel_max = 3.9999976
+scale_max = 3.0
+scale_curve = SubResource("CurveTexture_a5s8o")
+
+[sub_resource type="QuadMesh" id="QuadMesh_tx362"]
 
 [node name="level" type="Node3D"]
 
@@ -30,12 +57,12 @@ light_energy = 0.8
 omni_range = 18.692
 
 [node name="OmniLight3D" type="OmniLight3D" parent="Physic/Lights"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.20424315, 7.584881, -0.013056338)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.2038114, 8.3714075, -0.013056338)
 light_energy = 0.8
 omni_range = 18.692
 
 [node name="player" parent="Physic" instance=ExtResource("2_pdtm5")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 4.96181, 2.780384, 0)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 4.523384, 2.780384, 0)
 
 [node name="room" parent="Physic" instance=ExtResource("2_b3oru")]
 
@@ -78,15 +105,14 @@ script = ExtResource("14_f7u7y")
 [node name="SHOWRESULT" type="Node" parent="GameManager/State Machine"]
 script = ExtResource("15_jq2cn")
 
-[node name="HIDEBOX" type="Node" parent="GameManager/State Machine"]
+[node name="INTRO_PLAY" type="Node" parent="GameManager/State Machine"]
+script = ExtResource("16_ls4ot")
 
-[node name="TRYAGAIN" type="Node" parent="GameManager/State Machine"]
+[node name="MIDDLE_PLAY" type="Node" parent="GameManager/State Machine"]
+script = ExtResource("17_tx362")
 
-[node name="CUT_FIRSTFINGER" type="Node" parent="GameManager/State Machine"]
-
-[node name="CUT_SECONDFINGER" type="Node" parent="GameManager/State Machine"]
-
-[node name="CUT_THIRDFINGER" type="Node" parent="GameManager/State Machine"]
+[node name="FINAL_PLAY" type="Node" parent="GameManager/State Machine"]
+script = ExtResource("18_l7nqg")
 
 [node name="CUT_FOURTHFINGER" type="Node" parent="GameManager/State Machine"]
 
@@ -95,5 +121,20 @@ script = ExtResource("15_jq2cn")
 [node name="OPENDOOR" type="Node" parent="GameManager/State Machine"]
 
 [node name="GAMEOVER" type="Node" parent="GameManager/State Machine"]
+script = ExtResource("19_w7ck5")
 
 [node name="FINALE" type="Node" parent="GameManager/State Machine"]
+
+[node name="HIDEBOX" type="Node" parent="GameManager/State Machine"]
+
+[node name="TRYAGAIN" type="Node" parent="GameManager/State Machine"]
+
+[node name="Partilcle" type="Node3D" parent="."]
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="Partilcle"]
+transform = Transform3D(-0.050797828, 0.6622143, 0.74759066, 0.96872884, -0.1493627, 0.19812904, 0.24286601, 0.7342772, -0.63391876, 1.1950082, 2.9822822, -1.053779)
+material_override = SubResource("ShaderMaterial_ls4ot")
+emitting = false
+amount = 20
+process_material = SubResource("ParticleProcessMaterial_ls4ot")
+draw_pass_1 = SubResource("QuadMesh_tx362")

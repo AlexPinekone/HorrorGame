@@ -5,6 +5,7 @@ class_name showbox
 
 func Enter():
 	game_manager.show_box()
+	Singleton.primera = true
 
 func Exit():
 	pass
