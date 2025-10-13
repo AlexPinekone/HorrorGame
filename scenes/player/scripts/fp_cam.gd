@@ -32,8 +32,8 @@ func _input(event: InputEvent) -> void:
 			rotation.x = clamp(rotation.x, deg_to_rad(-45), deg_to_rad(50))
 			
 	if Singleton.state == Singleton.State.ball:
+		label_take()
 		if event is InputEventMouseMotion:
-			label_take()
 			get_parent().rotate_y(deg_to_rad(-event.relative.x * Singleton.sensitivity))
 			get_parent().rotation.y = clamp(get_parent().rotation.y, deg_to_rad(90), deg_to_rad(90))
 			rotate_x(deg_to_rad(-event.relative.y * Singleton.sensitivity))

@@ -31,4 +31,5 @@ func _physics_process(_delta: float) -> void:
 			Singleton.state = Singleton.State.ball
 			
 	else:
-		head.label_blank()		
+		if(Singleton.state != Singleton.State.ball):
+			head.label_blank()		
