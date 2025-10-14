@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://b2dwaqv7lox51"]
+[gd_scene load_steps=30 format=3 uid="uid://b2dwaqv7lox51"]
 
 [ext_resource type="PackedScene" uid="uid://l5hyla5u8vtv" path="res://scenary/roomlevel.tscn" id="2_b3oru"]
 [ext_resource type="PackedScene" uid="uid://db2ph8ec02msv" path="res://scenary/silla.tscn" id="2_pdpul"]
@@ -20,6 +20,9 @@
 [ext_resource type="Script" uid="uid://bwdjyv6bud60w" path="res://state_machine/States/middle_play.gd" id="17_tx362"]
 [ext_resource type="Script" uid="uid://cl1cgh7xj0dbh" path="res://state_machine/States/final_play.gd" id="18_l7nqg"]
 [ext_resource type="Script" uid="uid://78bcwapwc3j7" path="res://state_machine/States/gameover.gd" id="19_w7ck5"]
+[ext_resource type="PackedScene" uid="uid://d4kh5rmx04ctw" path="res://scenes/badcharacter.tscn" id="21_2nn5w"]
+[ext_resource type="Script" uid="uid://dd5v8p4v0bvek" path="res://scenes/player/scripts/badcharacter.gd" id="22_ou4v7"]
+[ext_resource type="Material" uid="uid://cg6mgsd6r57ri" path="res://materials/black.tres" id="23_53hnx"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ls4ot"]
 render_priority = 0
@@ -43,6 +46,8 @@ scale_curve = SubResource("CurveTexture_a5s8o")
 
 [sub_resource type="QuadMesh" id="QuadMesh_tx362"]
 
+[sub_resource type="BoxMesh" id="BoxMesh_mxqdg"]
+
 [node name="level" type="Node3D"]
 
 [node name="TextBox" parent="." instance=ExtResource("8_045es")]
@@ -53,6 +58,11 @@ scale_curve = SubResource("CurveTexture_a5s8o")
 
 [node name="OmniLight3D2" type="OmniLight3D" parent="Physic/Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.021255314, 7.088866, -16.86784)
+light_energy = 0.8
+omni_range = 18.692
+
+[node name="OmniLight3D3" type="OmniLight3D" parent="Physic/Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.021255314, 7.088866, -29.059122)
 light_energy = 0.8
 omni_range = 18.692
 
@@ -138,3 +148,17 @@ emitting = false
 amount = 20
 process_material = SubResource("ParticleProcessMaterial_ls4ot")
 draw_pass_1 = SubResource("QuadMesh_tx362")
+
+[node name="badcharacter" parent="." instance=ExtResource("21_2nn5w")]
+transform = Transform3D(-1.5298985e-08, 0, 0.35, 0, 0.35, 0, -0.35, 0, -1.5298985e-08, -0.9072931, 0.94488955, 0)
+script = ExtResource("22_ou4v7")
+
+[node name="Skeleton3D" parent="badcharacter/rig" index="0"]
+bones/6/rotation = Quaternion(-0.189, 0, -0.015, 0.982)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(9.662848, 0, 0, 0, 15.203347, 0, 0, 0, 7.9783525, 0, 4.6256123, -231.32106)
+material_override = ExtResource("23_53hnx")
+mesh = SubResource("BoxMesh_mxqdg")
+
+[editable path="badcharacter"]
