@@ -18,4 +18,4 @@ func label_hand():
 	label.text = "Put hand inside"
 	
 func label_open():
-	label.text = "Open"
+	label.text = "Use"

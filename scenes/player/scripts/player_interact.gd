@@ -2,7 +2,9 @@ extends RayCast3D
 
 @onready var animation_blink: AnimationPlayer = $"../../AnimationBlink"
 @onready var head: Node3D = $".."
-
+@onready var opendoor: AudioStreamPlayer3D = $"../../opendoor"
+@onready var invalid: AudioStreamPlayer3D = $"../../invalid"
+@onready var player: Player = $"../.."
 
 func _physics_process(_delta: float) -> void:
 	if is_colliding():
@@ -18,12 +20,20 @@ func _physics_process(_delta: float) -> void:
 		else:
 			head.label_blank()
 		
-		if hit.name == "door" && Input.is_action_just_pressed("interact"):
+		if hit.name == "door" && Input.is_action_just_pressed("interact") && Singleton.gameoverflag:
 			Singleton.state = Singleton.State.door
 			if Input.is_action_just_pressed("interact"):
+				opendoor.play()
 				hit.get_parent().get_parent().get_parent().toogle_door()
 				animation_blink.play("blink")
+				player.hide_bbeg()
 				
+		if hit.name == "door" && Input.is_action_just_pressed("interact") && !Singleton.gameoverflag:
+			invalid.play()
+			
+		if hit.name == "silla" && Input.is_action_just_pressed("interact") && Singleton.gameoverflag:
+			invalid.play()
+			
 		if hit.name == "silla" && Input.is_action_just_pressed("interact") && !Singleton.gameoverflag:
 			Singleton.state = Singleton.State.box
 			

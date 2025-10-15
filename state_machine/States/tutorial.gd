@@ -3,8 +3,10 @@ class_name tutorial
 
 @onready var text_box: CanvasLayer = $"../../../TextBox"
 @onready var game_manager: Node3D = $"../.."
+@onready var sound_machine: Node = $"../../Sound Machine"
 
 func Enter():
+	sound_machine.sitdown_play()
 	await get_tree().create_timer(1).timeout
 	text_box.queue_text("Hey, kid")
 	text_box.queue_text("You already know how this works")

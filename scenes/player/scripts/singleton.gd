@@ -24,6 +24,7 @@ var gameoverflag = false
 var primera = true
 
 var ban_fin_texto = false
+var end = false
 
 func _ready() -> void:
 	var mx = (box_max_x - box_min_x)/2
@@ -52,4 +53,15 @@ func randomN() -> void:
 func generaBox() -> void:
 	pass
 	
+func default_values():
+	evilBall = true
+
+	state = State.normal
+	fingers.clear()
+	fingers = {Fingers.pulgar: 1, Fingers.anular: 2, Fingers.indice: 3, Fingers.medio: 4, Fingers.menique: 5}
+	gameoverflag = false
+	primera = true
+
+	ban_fin_texto = false
+	end = false
 	

@@ -11,13 +11,18 @@ config_version=5
 [application]
 
 config/name="HorrorGame"
-run/main_scene="uid://b2dwaqv7lox51"
+run/main_scene="uid://cxuqani4okj2q"
 config/features=PackedStringArray("4.5", "C#", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [autoload]
 
 Singleton="*res://scenes/player/scripts/singleton.gd"
+BackgroundMachine="*res://scenes/background_machine.tscn"
+
+[display]
+
+window/size/resizable=false
 
 [dotnet]
 

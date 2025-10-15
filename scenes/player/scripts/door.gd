@@ -6,6 +6,7 @@ func toogle_door():
 	if $AnimationPlayer.current_animation != "open" and $AnimationPlayer.current_animation != "close":
 		if !opened:
 			$AnimationPlayer.play("open")
+			BackgroundMachine.stop_background()
 		if opened:
 			$AnimationPlayer.play("close")
 		opened = !opened

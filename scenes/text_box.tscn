@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://bpqfhe3jhfhve"]
+[gd_scene load_steps=6 format=3 uid="uid://bpqfhe3jhfhve"]
 
 [ext_resource type="Script" uid="uid://cck1gcblqlo60" path="res://scenes/player/scripts/text_box.gd" id="1_dyarx"]
 [ext_resource type="FontFile" uid="uid://d2ktr2x6rixh2" path="res://fonts/TimesNewPixel.ttf" id="1_wscpg"]
+[ext_resource type="AudioStream" uid="uid://bxpnw2fiv55m0" path="res://sounds/blabla.wav" id="3_qdwih"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0dhrm"]
 bg_color = Color(0, 0, 0, 1)
@@ -75,3 +76,8 @@ size_flags_vertical = 8
 theme_override_fonts/font = ExtResource("1_wscpg")
 theme_override_font_sizes/font_size = 60
 text = "v"
+
+[node name="blabla" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("3_qdwih")
+volume_db = -10.079
+max_db = 0.995

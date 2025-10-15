@@ -4,6 +4,7 @@ class_name final_play
 @onready var game_manager: Node3D = $"../.."
 @onready var player: Player = $"../../../Physic/player"
 @onready var text_box: CanvasLayer = $"../../../TextBox"
+@onready var sound_machine: Node = $"../../Sound Machine"
 
 var isMT = false
 var uhOh = false
@@ -44,18 +45,22 @@ func Update(_delta: float):
 			0:
 				uhOh = true
 			1:
+				sound_machine.blood_play()
 				player.hide_f_pulgar()
 				player.red_pulgar()
 				Singleton.fingers.erase(Singleton.Fingers.pulgar)
 			2:
+				sound_machine.blood_play()
 				player.hide_f_menique()
 				player.red_menique()
 				Singleton.fingers.erase(Singleton.Fingers.menique)
 			3:
+				sound_machine.blood_play()
 				player.hide_f_anular()
 				player.red_anular()
 				Singleton.fingers.erase(Singleton.Fingers.anular)
 			4:
+				sound_machine.blood_play()
 				player.hide_f_medio()
 				player.red_medio()
 				Singleton.fingers.erase(Singleton.Fingers.medio)

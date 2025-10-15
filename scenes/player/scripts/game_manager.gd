@@ -5,7 +5,7 @@ extends Node3D
 @onready var gpu_particles_3d: GPUParticles3D = $"../Partilcle/GPUParticles3D"
 
 func _ready() -> void:
-	pass
+	Singleton.default_values()
 
 func _process(_delta: float) -> void:
 	pass

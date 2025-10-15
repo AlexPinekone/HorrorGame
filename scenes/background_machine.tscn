@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://c8c4ld2y1lal5"]
+
+[ext_resource type="AudioStream" uid="uid://ihjg4axk5lh0" path="res://song/mignon.wav" id="1_u28jf"]
+[ext_resource type="Script" uid="uid://r4jf6wqfwqp3" path="res://scenes/player/scripts/background_machine.gd" id="2_ddh0u"]
+
+[node name="background" type="AudioStreamPlayer3D"]
+stream = ExtResource("1_u28jf")
+volume_db = -8.819
+pitch_scale = 0.9
+script = ExtResource("2_ddh0u")

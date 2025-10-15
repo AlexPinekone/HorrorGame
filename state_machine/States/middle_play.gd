@@ -2,6 +2,7 @@ extends State
 class_name middle_play
 
 @onready var game_manager: Node3D = $"../.."
+@onready var sound_machine: Node = $"../../Sound Machine"
 
 func Enter():
 	game_manager.start_blink()
@@ -13,6 +14,7 @@ func Exit():
 
 func Update(_delta: float):
 	if (Singleton.state == Singleton.State.showhand):
+		sound_machine.pickup_play()
 		Transitioned.emit(self, "FINAL_PLAY")
 
 func PhysicsUpdate(_delta: float):

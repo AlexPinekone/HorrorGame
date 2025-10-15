@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://b2dwaqv7lox51"]
+[gd_scene load_steps=41 format=3 uid="uid://b2dwaqv7lox51"]
 
 [ext_resource type="PackedScene" uid="uid://l5hyla5u8vtv" path="res://scenary/roomlevel.tscn" id="2_b3oru"]
 [ext_resource type="PackedScene" uid="uid://db2ph8ec02msv" path="res://scenary/silla.tscn" id="2_pdpul"]
@@ -20,9 +20,19 @@
 [ext_resource type="Script" uid="uid://bwdjyv6bud60w" path="res://state_machine/States/middle_play.gd" id="17_tx362"]
 [ext_resource type="Script" uid="uid://cl1cgh7xj0dbh" path="res://state_machine/States/final_play.gd" id="18_l7nqg"]
 [ext_resource type="Script" uid="uid://78bcwapwc3j7" path="res://state_machine/States/gameover.gd" id="19_w7ck5"]
+[ext_resource type="Script" uid="uid://d0lb1uc6b1t7w" path="res://scenes/player/scripts/sound_machine.gd" id="20_0nj7r"]
+[ext_resource type="AudioStream" uid="uid://bxpnw2fiv55m0" path="res://sounds/blabla.wav" id="20_7yq2r"]
+[ext_resource type="AudioStream" uid="uid://di6bwqjq8ryyv" path="res://sounds/blood.wav" id="21_0nj7r"]
 [ext_resource type="PackedScene" uid="uid://d4kh5rmx04ctw" path="res://scenes/badcharacter.tscn" id="21_2nn5w"]
+[ext_resource type="AudioStream" uid="uid://bmhou5b0dkp2" path="res://sounds/pickup.mp3" id="22_4mjh6"]
 [ext_resource type="Script" uid="uid://dd5v8p4v0bvek" path="res://scenes/player/scripts/badcharacter.gd" id="22_ou4v7"]
+[ext_resource type="AudioStream" uid="uid://ch2xhb8mu80h3" path="res://sounds/sitdown.wav" id="23_7fu2r"]
 [ext_resource type="Material" uid="uid://cg6mgsd6r57ri" path="res://materials/black.tres" id="23_53hnx"]
+[ext_resource type="AudioStream" uid="uid://cr2dqnqj1sy5x" path="res://sounds/new_thud.wav" id="25_0nj7r"]
+[ext_resource type="AudioStream" uid="uid://p4bff3w3nwe8" path="res://sounds/metalrun.wav" id="26_5xpsa"]
+[ext_resource type="AudioStream" uid="uid://cswpasnv2y4lt" path="res://sounds/suspence.wav" id="27_yn1es"]
+[ext_resource type="AudioStream" uid="uid://cu1y3ql8nrphc" path="res://sounds/door.wav" id="28_yn1es"]
+[ext_resource type="Script" uid="uid://dckf0c01ku5h0" path="res://scenes/player/scripts/end.gd" id="30_4mjh6"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ls4ot"]
 render_priority = 0
@@ -48,6 +58,9 @@ scale_curve = SubResource("CurveTexture_a5s8o")
 
 [sub_resource type="BoxMesh" id="BoxMesh_mxqdg"]
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_4mjh6"]
+size = Vector3(0.040283203, 1, 1)
+
 [node name="level" type="Node3D"]
 
 [node name="TextBox" parent="." instance=ExtResource("8_045es")]
@@ -62,7 +75,7 @@ light_energy = 0.8
 omni_range = 18.692
 
 [node name="OmniLight3D3" type="OmniLight3D" parent="Physic/Lights"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.021255314, 7.088866, -29.059122)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.021255314, 6.8631687, -54.626656)
 light_energy = 0.8
 omni_range = 18.692
 
@@ -71,8 +84,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.2038114, 8.3714075, -0.0130
 light_energy = 0.8
 omni_range = 18.692
 
-[node name="player" parent="Physic" instance=ExtResource("2_pdtm5")]
+[node name="player" parent="Physic" node_paths=PackedStringArray("bbeg") instance=ExtResource("2_pdtm5")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 4.523384, 2.780384, 0)
+bbeg = NodePath("../../badcharacter")
 
 [node name="room" parent="Physic" instance=ExtResource("2_b3oru")]
 
@@ -139,6 +153,39 @@ script = ExtResource("19_w7ck5")
 
 [node name="TRYAGAIN" type="Node" parent="GameManager/State Machine"]
 
+[node name="Sound Machine" type="Node" parent="GameManager"]
+script = ExtResource("20_0nj7r")
+
+[node name="badspeak" type="AudioStreamPlayer3D" parent="GameManager/Sound Machine"]
+stream = ExtResource("20_7yq2r")
+
+[node name="blood" type="AudioStreamPlayer3D" parent="GameManager/Sound Machine"]
+stream = ExtResource("21_0nj7r")
+volume_db = -10.078
+
+[node name="pickup" type="AudioStreamPlayer3D" parent="GameManager/Sound Machine"]
+stream = ExtResource("22_4mjh6")
+
+[node name="sitdown" type="AudioStreamPlayer3D" parent="GameManager/Sound Machine"]
+stream = ExtResource("23_7fu2r")
+volume_db = -7.559
+
+[node name="thud" type="AudioStreamPlayer3D" parent="GameManager/Sound Machine"]
+stream = ExtResource("25_0nj7r")
+volume_db = -5.039
+
+[node name="metalrun" type="AudioStreamPlayer3D" parent="GameManager/Sound Machine"]
+stream = ExtResource("26_5xpsa")
+volume_db = 7.559
+pitch_scale = 3.0
+
+[node name="suspence" type="AudioStreamPlayer3D" parent="GameManager/Sound Machine"]
+stream = ExtResource("27_yn1es")
+volume_db = 10.0
+
+[node name="door" type="AudioStreamPlayer3D" parent="GameManager/Sound Machine"]
+stream = ExtResource("28_yn1es")
+
 [node name="Partilcle" type="Node3D" parent="."]
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="Partilcle"]
@@ -160,5 +207,15 @@ bones/6/rotation = Quaternion(-0.189, 0, -0.015, 0.982)
 transform = Transform3D(9.662848, 0, 0, 0, 15.203347, 0, 0, 0, 7.9783525, 0, 4.6256123, -231.32106)
 material_override = ExtResource("23_53hnx")
 mesh = SubResource("BoxMesh_mxqdg")
+
+[node name="End" type="Area3D" parent="."]
+transform = Transform3D(354.44003, 0, 0, 0, 10.963081, 0, 0, 0, 65.15813, 4.7729273, 0.20294571, -104.589806)
+script = ExtResource("30_4mjh6")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="End"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.9999999, -0.017456057, 0.2815776, 0)
+shape = SubResource("BoxShape3D_4mjh6")
+
+[connection signal="body_entered" from="End" to="End" method="_on_body_entered"]
 
 [editable path="badcharacter"]

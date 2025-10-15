@@ -6,6 +6,7 @@ const CHAR_READ_RATE = 0.1
 @onready var start_symbol = $TextBoxContainer/MarginContainer/HBoxContainer/Start
 @onready var end_symbol = $TextBoxContainer/MarginContainer/HBoxContainer/End
 @onready var label: Label = $TextBoxContainer/MarginContainer/HBoxContainer/Label
+@onready var blabla: AudioStreamPlayer3D = $blabla
 
 var tween : Tween
 
@@ -19,17 +20,27 @@ var current_state = textState.READY
 var text_queue = []
 var finished := false
 
+var soundf = true
+
 func _ready() -> void:
 	print("Starting state: READY")
 	hide_textbox()
 	#queue_text("This is the first text")
 
+func sound_effect():
+	if soundf:
+		soundf = false
+		blabla.play()
+		await get_tree().create_timer(0.2).timeout
+		soundf = true
+	
 func _process(_delta: float) -> void:
 	match current_state:
 		textState.READY:
 			if !text_queue.is_empty():
 				display_text()
 		textState.READING:
+			sound_effect()
 			if Input.is_action_just_pressed("ui_accept") || Input.is_action_just_pressed("interact"):
 				label.visible_ratio = 1.0
 				#v
