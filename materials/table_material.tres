@@ -3,6 +3,6 @@
 [ext_resource type="Texture2D" uid="uid://bcfoi8tcuaaax" path="res://textures/256x256/Floor/Horror_Floor_03-256x256.png" id="1_txqmw"]
 
 [resource]
-albedo_color = Color(0.75725764, 0.57997257, 0.7842492, 1)
+albedo_color = Color(0.757258, 0.579973, 0.784249, 1)
 albedo_texture = ExtResource("1_txqmw")
 uv1_scale = Vector3(5, 5, 1)

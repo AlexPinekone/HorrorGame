@@ -17,11 +17,20 @@ func Enter():
 	if(Singleton.evilBall):
 		player.show_ball_black()
 		await get_tree().create_timer(2).timeout
-		text_box.queue_text("BLACK")
+		text_box.queue_text("Bad luck, buddy")
+		text_box.queue_text("Let's try it once again")
 	else:
 		player.show_ball_white()
 		await get_tree().create_timer(2).timeout
-		text_box.queue_text("WHITE")
+		text_box.queue_text("Hmmm")
+		text_box.queue_text("Not bad")
+		text_box.queue_text("You got lucky")
+		text_box.queue_text("...")
+		text_box.queue_text("...")
+		text_box.queue_text("...")
+		text_box.queue_text("...")
+		text_box.queue_text("...")
+		text_box.queue_text("Leave")
 		gtfo = true
 	await get_tree().create_timer(2).timeout
 	

@@ -12,8 +12,11 @@ config_version=5
 
 config/name="HorrorGame"
 run/main_scene="uid://cxuqani4okj2q"
-config/features=PackedStringArray("4.5", "C#", "GL Compatibility")
-config/icon="res://icon.svg"
+config/features=PackedStringArray("4.4", "GL Compatibility")
+boot_splash/bg_color=Color(0.111197, 0.111197, 0.111197, 1)
+boot_splash/show_image=false
+boot_splash/image="uid://crfeej1mw4rvf"
+config/icon="uid://cd4gwyur8v1f3"
 
 [autoload]
 

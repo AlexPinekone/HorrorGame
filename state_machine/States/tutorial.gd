@@ -8,13 +8,13 @@ class_name tutorial
 func Enter():
 	sound_machine.sitdown_play()
 	await get_tree().create_timer(1).timeout
-	text_box.queue_text("Hey, kid")
+	text_box.queue_text("Hey, buddy")
 	text_box.queue_text("You already know how this works")
-	text_box.queue_text("Two balls, one black, one white")
-	text_box.queue_text("Take the white one, and you can get out")
-	text_box.queue_text("Take the black one, and you die")
-	text_box.queue_text("Simple, right?")
-	text_box.queue_text("Go on")
+	text_box.queue_text("The box has two balls")
+	text_box.queue_text("If you take the black one, you die")
+	text_box.queue_text("If you take the white one, I let you go")
+	text_box.queue_text("Simple. Right?")
+	text_box.queue_text("Go ahead")
 	game_manager.up_ray_cast()
 
 func Update(delta: float):

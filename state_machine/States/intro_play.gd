@@ -8,8 +8,9 @@ func Enter():
 	game_manager.show_box()
 	game_manager.up_ray_cast()
 	await get_tree().create_timer(1).timeout
-	text_box.queue_text("You have another chance")
-	text_box.queue_text("Go on")
+	text_box.queue_text("You have another chance!")
+	text_box.queue_text("Go ahead")
+	text_box.queue_text("Take a ball")
 
 func Exit():
 	pass

@@ -15,10 +15,12 @@ func Enter():
 	else:
 		player.show_ball_white()
 	await get_tree().create_timer(2).timeout
-	text_box.queue_text("It looks like you took a black one")
-	text_box.queue_text("Bad luck, kiddo")
-	text_box.queue_text("But, we can do something about it")
-	text_box.queue_text("For a price, sure")
+	text_box.queue_text("I see")
+	text_box.queue_text("A black one")
+	text_box.queue_text("Bad luck, pal")
+	text_box.queue_text("However, I can do something about it")
+	text_box.queue_text("How about another attempt?")
+	text_box.queue_text("For a price. Of course")
 	
 
 func Exit():

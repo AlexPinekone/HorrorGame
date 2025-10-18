@@ -39,7 +39,7 @@ render_priority = 0
 shader = ExtResource("16_a5s8o")
 
 [sub_resource type="Curve" id="Curve_jq2cn"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.3820225), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.382023), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="CurveTexture" id="CurveTexture_a5s8o"]
@@ -49,8 +49,8 @@ curve = SubResource("Curve_jq2cn")
 spread = 2.53
 initial_velocity_min = 4.0
 initial_velocity_max = 6.0
-linear_accel_min = 3.9999976
-linear_accel_max = 3.9999976
+linear_accel_min = 4.0
+linear_accel_max = 4.0
 scale_max = 3.0
 scale_curve = SubResource("CurveTexture_a5s8o")
 
@@ -59,7 +59,7 @@ scale_curve = SubResource("CurveTexture_a5s8o")
 [sub_resource type="BoxMesh" id="BoxMesh_mxqdg"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4mjh6"]
-size = Vector3(0.040283203, 1, 1)
+size = Vector3(0.0402832, 1, 1)
 
 [node name="level" type="Node3D"]
 
@@ -70,22 +70,22 @@ size = Vector3(0.040283203, 1, 1)
 [node name="Lights" type="Node3D" parent="Physic"]
 
 [node name="OmniLight3D2" type="OmniLight3D" parent="Physic/Lights"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.021255314, 7.088866, -16.86784)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0212553, 7.08887, -16.8678)
 light_energy = 0.8
 omni_range = 18.692
 
 [node name="OmniLight3D3" type="OmniLight3D" parent="Physic/Lights"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.021255314, 6.8631687, -54.626656)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0212553, 6.86317, -54.6267)
 light_energy = 0.8
 omni_range = 18.692
 
 [node name="OmniLight3D" type="OmniLight3D" parent="Physic/Lights"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.2038114, 8.3714075, -0.013056338)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.20381, 8.37141, -0.0130563)
 light_energy = 0.8
 omni_range = 18.692
 
 [node name="player" parent="Physic" node_paths=PackedStringArray("bbeg") instance=ExtResource("2_pdtm5")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 4.523384, 2.780384, 0)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 4.52338, 2.78038, 0)
 bbeg = NodePath("../../badcharacter")
 
 [node name="room" parent="Physic" instance=ExtResource("2_b3oru")]
@@ -93,19 +93,19 @@ bbeg = NodePath("../../badcharacter")
 [node name="Objects" type="Node3D" parent="Physic"]
 
 [node name="table" parent="Physic/Objects" instance=ExtResource("3_b3oru")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.7912784, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.79128, 0)
 
 [node name="sillai" parent="Physic/Objects" groups=["silla"] instance=ExtResource("7_8hd6v")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 1.012, 1.796, 0)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 1.012, 1.796, 0)
 
 [node name="silla" parent="Physic/Objects" instance=ExtResource("2_pdpul")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -2.0336998, 1.7955139, 0)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2.0337, 1.79551, 0)
 
 [node name="box" parent="Physic/Objects" instance=ExtResource("5_61w3m")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.5583954, 10.720471, -0.031607628)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.558395, 10.7205, -0.0316076)
 
 [node name="door" parent="Physic/Objects" instance=ExtResource("4_ua5ty")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.027250051, 3.0671003, -6.7585173)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0272501, 3.0671, -6.75852)
 
 [node name="GameManager" type="Node3D" parent="."]
 script = ExtResource("9_omn1t")
@@ -189,7 +189,7 @@ stream = ExtResource("28_yn1es")
 [node name="Partilcle" type="Node3D" parent="."]
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="Partilcle"]
-transform = Transform3D(-0.050797828, 0.6622143, 0.74759066, 0.96872884, -0.1493627, 0.19812904, 0.24286601, 0.7342772, -0.63391876, 1.1950082, 2.9822822, -1.053779)
+transform = Transform3D(-0.0507978, 0.662214, 0.747591, 0.968729, -0.149363, 0.198129, 0.242866, 0.734277, -0.633919, 1.19501, 2.98228, -1.05378)
 material_override = SubResource("ShaderMaterial_ls4ot")
 emitting = false
 amount = 20
@@ -197,23 +197,23 @@ process_material = SubResource("ParticleProcessMaterial_ls4ot")
 draw_pass_1 = SubResource("QuadMesh_tx362")
 
 [node name="badcharacter" parent="." instance=ExtResource("21_2nn5w")]
-transform = Transform3D(-1.5298985e-08, 0, 0.35, 0, 0.35, 0, -0.35, 0, -1.5298985e-08, -0.9072931, 0.94488955, 0)
+transform = Transform3D(-1.5299e-08, 0, 0.35, 0, 0.35, 0, -0.35, 0, -1.5299e-08, -0.907293, 0.94489, 0)
 script = ExtResource("22_ou4v7")
 
 [node name="Skeleton3D" parent="badcharacter/rig" index="0"]
 bones/6/rotation = Quaternion(-0.189, 0, -0.015, 0.982)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(9.662848, 0, 0, 0, 15.203347, 0, 0, 0, 7.9783525, 0, 4.6256123, -231.32106)
+transform = Transform3D(9.66285, 0, 0, 0, 15.2033, 0, 0, 0, 7.97835, 0, 4.62561, -231.321)
 material_override = ExtResource("23_53hnx")
 mesh = SubResource("BoxMesh_mxqdg")
 
 [node name="End" type="Area3D" parent="."]
-transform = Transform3D(354.44003, 0, 0, 0, 10.963081, 0, 0, 0, 65.15813, 4.7729273, 0.20294571, -104.589806)
+transform = Transform3D(354.44, 0, 0, 0, 10.9631, 0, 0, 0, 65.1581, 4.77293, 0.202946, -104.59)
 script = ExtResource("30_4mjh6")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="End"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.9999999, -0.017456057, 0.2815776, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0174561, 0.281578, 0)
 shape = SubResource("BoxShape3D_4mjh6")
 
 [connection signal="body_entered" from="End" to="End" method="_on_body_entered"]

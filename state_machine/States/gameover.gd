@@ -14,7 +14,7 @@ func Enter():
 	game_manager.move_chair_in()
 	game_manager.up_ray_cast()
 	await get_tree().create_timer(2).timeout
-	text_box.queue_text("GAME OVER")
+	text_box.queue_text("Goodbye")
 	
 
 func Update(_delta: float):
@@ -28,7 +28,7 @@ func Update(_delta: float):
 		sound_machine.metalrun_play()
 		await get_tree().create_timer(4).timeout
 		sound_machine.metalrun_stop()
-		sound_machine.suspence_play()
+		sound_machine.blood_play()
 		await get_tree().create_timer(3).timeout
 		get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
 		#Cambio de escena
